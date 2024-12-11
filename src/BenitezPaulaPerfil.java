@@ -1,74 +1,82 @@
-
 import java.util.ArrayList;
-import java.util.Scanner;
 
+
+//clase perfil y sus atributos
 public class BenitezPaulaPerfil {
-    
-    public static void main (String[] args){
-        BenitezPaulaPerfil programa= new BenitezPaulaPerfil();
-        programa.inicio();
+
+    private String name;
+    private String story;
+    private ArrayList<String> hobbies;
+    private ArrayList<String> foods;
+    private ArrayList<String> funFacts;
+
+    //constructor perfil
+    public BenitezPaulaPerfil(String name,String story,ArrayList<String> hobbies,ArrayList<String> foods,ArrayList<String> funFacts){
+        this.name = name;
+        this.story = story;
+        this.hobbies = hobbies;
+        this.foods = foods;
+        this.funFacts = funFacts;
+    }
+
+    /* Estos metodos sirven para acceder a los atributos:
+     nombre, story, hobbies, food, funFacts.
+     en este caso no especifiqué parametros de entrada,
+     todos devuelven un String, una cadena de texto.
+     */
+    public String getName(){
+        return name;
+    }
+
+    public String getStory(){
+        return story;
+    }
+
+    //aqui en los favoritos usamos listas
+    public ArrayList<String>getHobbies(){
+        return hobbies;
+    }
+
+    public ArrayList<String> getFoods(){
+        return foods;
+    }
+    public ArrayList<String>getFunFacts(){
+        return funFacts;
+    }
+
+    /*Este metodo, devuelve la historia introducida, de forma que este correctamente formateada.
+    * no tiene especificado parametro de entrada.
+    * y devuelve una cadena de texto Story.*/
+    public String getFormattedStory() {
+        return "Mi historia; " + story;
+    }
+
+    /*Este metodo, devuelve los datos almacenados en el array hobbies en formato de lista
+     utilizando un contador.
+     no tiene parametros de entrada especificados y devuelve un String*/
+    public String getFormattedHobbies() {
+        String result = "Mis hobbies son: \n";
+        for (String hobby : hobbies){
+            result += hobby;
+
+        }
+        return result;
+    }
+/*Este metodo al igual que el anterior, devuelve los datos del array Foods en formato de lista, por medio de un contador
+* no especifique parametros de entrada al metodo. pero si la salida que es String*/
+    public String getFormattedFoods(){
+        String resultado= ("Mis comidas favoritas son: \n");
+        for (String food : foods){
+            resultado+= food;
+        }
+        return resultado;
+    }
+/*este metodo sortea y exibe aleatoriamente una de las curiosidades almacenadas en el array FunFacts.
+* no tiene parametro de entrada especificado, y la salida es una cadena de texto, String*/
+    public String getFormattedFunFacts(){
+        int indice= (int)(Math.random()* funFacts.size());
+        return "Un dato curioso: "+funFacts.get(indice);
 
     }
 
-    public void inicio() {
-
-        //listas de favoritos y datos curiosos
-        ArrayList<String> hobbies= new ArrayList<>();
-        hobbies.add("Fotografía 📸\n");
-        hobbies.add("Ver Series 📺\n");
-        hobbies.add("Viajar ✈️\n");
-
-        ArrayList<String> food= new ArrayList<>();
-        food.add("Pasta 🍝\n");
-        food.add("Sushi 🍙\n");
-        food.add("Hamburguesa 🍔\n");
-        food.add("Pizza 🍕\n");
-
-        ArrayList<String> funFacts= new ArrayList<>();
-        funFacts.add("hablo 3 idiomas 💬");
-        funFacts.add("Tengo 2 perritos, Mauri y Cistal 🐶");
-        funFacts.add("Soy fan de Formula 1 🏎️");
-
-        //Creamos el perfil
-        Perfil perfil = new Perfil("Paula Benitez","\n Hola! soy Paula, me encanta aprender cosas nuevas y exponerme a nuevos desafios. \n me gusta viajar y conocer culturas, personas e historias. ", hobbies,food,funFacts);
-
-        Scanner sc = new Scanner(System.in);
-        int opciones;
-
-        // Menú de opciones
-        do {
-            System.out.println("Menu, AboutMe "+ perfil.getName());
-            System.out.println("[1] Story");
-            System.out.println("[2] Favorites");
-            System.out.println("[3] Fun Facts");
-            System.out.println("[4] Salir");
-
-            opciones = sc.nextInt();
-            sc.nextLine();
-
-            //lector de opciones
-            switch (opciones){
-
-                case 1:
-                    System.out.println(perfil.getFormattedStory());
-                    break;
-                case 2:
-                    System.out.println(perfil.getFormattedHobbies());
-                    System.out.println(perfil.getFormattedFoods());
-                    break;
-                case 3:
-                    System.out.println(perfil.getFormattedFunFacts());
-                    break;
-                case 4:
-                    System.out.println("Haz elegido salir, hasta pronto ;)");
-                    break;
-                default:
-                    System.out.println("Opción invalida. elije una de estas opciones: ");
-
-            }
-
-        }while (opciones !=4);
-
-
-    }
 }
